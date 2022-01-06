@@ -39,6 +39,7 @@ namespace WebApi.DbOperations
                         GenreId = 3, //Real Life Events
                         PageCount = 600,
                         PublishDate = new DateTime(2021, 02, 01)
+                    }
             );
 
                 context.SaveChanges();
