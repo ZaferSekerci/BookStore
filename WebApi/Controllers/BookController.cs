@@ -48,12 +48,12 @@ namespace WebApi.AddControllers
 
         }
 
-        [HttpGet]
-        public Book Get([FromQuery] string id)
-        {
-            var book = BookList.Where(book => book.Id == Convert.ToInt32(id)).SingleOrDefault();
-            return book;
-        }
+        // [HttpGet]
+        // public Book Get([FromQuery] string id)
+        // {
+        //     var book = BookList.Where(book => book.Id == Convert.ToInt32(id)).SingleOrDefault();
+        //     return book;
+        // }
 
         [HttpPost]
 
