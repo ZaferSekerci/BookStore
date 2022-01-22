@@ -741,11 +741,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zafer\\source\\repos\\BookStore\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\zafer\\Documents\\GitHub\\BookStore\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\zafer\\source\\repos\\BookStore\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\zafer\\Documents\\GitHub\\BookStore\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\zafer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zafer\\source\\repos\\BookStore\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\zafer\\Documents\\GitHub\\BookStore\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zafer\\AppData\\Roaming\\NuGet\\NuGet.Config",

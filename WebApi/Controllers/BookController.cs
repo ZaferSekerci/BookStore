@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.BookOperations.CreateBook;
+using WebApi.BookOperations.GetBooks;
 using WebApi.DbOperations;
+using static WebApi.BookOperations.CreateBook.CreateBookCommand;
 
 namespace WebApi.AddControllers
 {
@@ -17,35 +20,14 @@ namespace WebApi.AddControllers
             _context = context;
         }
 
-        // private static List<Book> BookList = new List<Book>()
-        // {
-        //     new Book{
-        //         Id = 1,
-        //         Title = "Robinson Crusoe",
-        //         GenreId = 1, //Survive
-        //         PageCount = 365,
-        //         PublishDate = new DateTime(1996,11,06)
-        //     },
-        //     new Book{
-        //         Id = 2,
-        //         Title = "Ölü Canlar",
-        //         GenreId = 2, //Drama
-        //         PageCount = 457,
-        //         PublishDate = new DateTime(1978,06,07)
-        //     },
-        //     new Book{
-        //         Id = 3,
-        //         Title = "Avonlea",
-        //         GenreId = 3, //Real Life Events
-        //         PageCount = 600,
-        //         PublishDate = new DateTime(2021,02,01)
-        //     }
-        // };
+
         [HttpGet]
-        public List<Book> GetBooks()
+        public IActionResult GetBooks()
         {
-            var bookList = _context.Books.OrderBy(x => x.Id).ToList<Book>();
-            return bookList;
+
+            GetBooksQuery query = new GetBooksQuery(_context);
+            var result = query.Handle();
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -65,17 +47,23 @@ namespace WebApi.AddControllers
 
         [HttpPost]
 
-        public IActionResult AddBook([FromBody] Book newBook)
+        public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-            var book = _context.Books.SingleOrDefault(x => x.Title == newBook.Title);
+            CreateBookCommand command = new CreateBookCommand(_context);
 
-            if (book is not null)
-                return BadRequest();
+            try
+            {
+                command.Model = newBook;
+                command.Handle();
+            }
+            catch (Exception ex)
+            {
 
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+                return BadRequest(ex.Message);
+            }
+
+
             return Ok();
-
         }
 
         [HttpPut("{id}")]
